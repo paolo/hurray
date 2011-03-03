@@ -1,2 +1,17 @@
 Hurray!
 Finally an easy way to develop mobile applications!
+
+Requirements (so far):
+Ruby  >= 1.8.7
+JRuby >= 1.6 (to execute the simulator)
+
+to run the helloworl test application:
+go to the project's root (hurray folder)
+ruby -Ilib/hurray-ruby-sdk helloworld.rb
+
+to run the application, and view the results with the simulator:
+go to the project's root.
+jruby -Ilib/hurray-ruby-sdk -Itest/helloworld -Itools/hurray-jruby-sin simulator.rb
+
+So far the hello world app is still not finished, using the simulator you'll only see an empty
+window 640x480 (IPhone 3G resolution).
