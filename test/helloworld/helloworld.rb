@@ -1,30 +1,22 @@
 require "happlication"
+require "happlication_controller"
 require "hwindow"
-require "hview"
+require "hlabel"
+require "hrect"
 
-class HMain
-  attr_reader :appDelegate
+class HelloWorldController < HApplicationController
   
   def initialize
-    @appDelegate = HelloWorldDelegate.new
+    @view = HWindow.new HRect.new(0, 0, 320, 480)
   end
   
-  def main
-    HApplication.application_main(@appDelegate)
+  def start
+    label = HLabel.new HRect.new(20, 20, 150, 25)
+    label.text = "Hello World"
+    
+    @view.add_subview label
+    @view.make_visible
   end
-  
 end
 
-class HelloWorldDelegate
-  attr_accessor :window
-  
-  def initialize
-    @window = HWindow.new(480,640)
-  end
-  
-  def init
-    view = HView.new
-    @window.addView view
-    @window.makeVisible
-  end
-end
+HApplication.new(HelloWorldController.new)
