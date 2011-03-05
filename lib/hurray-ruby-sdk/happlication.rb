@@ -1,8 +1,10 @@
 class HApplication
-  class << self
-    def application_main(appDelegate)
-      @appDelegate = appDelegate
-      @appDelegate.init
-    end
+  
+  attr_reader :controller
+  
+  def initialize(controller)
+    @controller = controller
+    @controller.start
   end
+
 end

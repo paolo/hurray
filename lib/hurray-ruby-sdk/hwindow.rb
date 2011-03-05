@@ -1,18 +1,10 @@
+require "yaml"
 require "hview"
 
-class HWindow
-  
-  attr_accessor :width, :height, :view
-  
-  def initialize(width, height)
-    @width = width
-    @height = height
+class HWindow < HView
+
+  def initialize(rect)
+    super rect
   end
-  
-  def addView(view)
-    @view = view
-  end
-  
-  def makeVisible
-  end
+
 end
