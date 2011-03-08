@@ -13,8 +13,5 @@ class HView
   def add_subview(view)
     @subviews.push view
   end
-  
-  def make_visible
-    puts YAML::dump self
-  end
+
 end
