@@ -1,0 +1,272 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA747D9F0F9514B9006C5449 /* hurray_objc_sdk_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* hurray_objc_sdk_Prefix.pch */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		CF8594501321E8930054CAEA /* HApplicationController.h in Headers */ = {isa = PBXBuildFile; fileRef = CF85944E1321E8930054CAEA /* HApplicationController.h */; };
+		CF8594511321E8930054CAEA /* HApplicationController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF85944F1321E8930054CAEA /* HApplicationController.m */; };
+		CF8594AF1322EC850054CAEA /* HApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8594AD1322EC850054CAEA /* HApplication.h */; };
+		CF8594B01322EC850054CAEA /* HApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8594AE1322EC850054CAEA /* HApplication.m */; };
+		CF8594B4132581690054CAEA /* HView.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8594B2132581690054CAEA /* HView.h */; };
+		CF8594B5132581690054CAEA /* HView.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8594B3132581690054CAEA /* HView.m */; };
+		CF8594B81325825C0054CAEA /* HRect.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8594B61325825C0054CAEA /* HRect.h */; };
+		CF8594B91325825C0054CAEA /* HRect.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8594B71325825C0054CAEA /* HRect.m */; };
+		CF8594F213259E170054CAEA /* HWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8594F013259E170054CAEA /* HWindow.h */; };
+		CF8594F313259E170054CAEA /* HWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8594F113259E170054CAEA /* HWindow.m */; };
+		CF8594F81325AE120054CAEA /* HLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = CF8594F61325AE120054CAEA /* HLabel.h */; };
+		CF8594F91325AE120054CAEA /* HLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = CF8594F71325AE120054CAEA /* HLabel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA747D9E0F9514B9006C5449 /* hurray_objc_sdk_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hurray_objc_sdk_Prefix.pch; sourceTree = SOURCE_ROOT; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CF85944E1321E8930054CAEA /* HApplicationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HApplicationController.h; sourceTree = "<group>"; };
+		CF85944F1321E8930054CAEA /* HApplicationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HApplicationController.m; sourceTree = "<group>"; };
+		CF8594AD1322EC850054CAEA /* HApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HApplication.h; sourceTree = "<group>"; };
+		CF8594AE1322EC850054CAEA /* HApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HApplication.m; sourceTree = "<group>"; };
+		CF8594B2132581690054CAEA /* HView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HView.h; sourceTree = "<group>"; };
+		CF8594B3132581690054CAEA /* HView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HView.m; sourceTree = "<group>"; };
+		CF8594B61325825C0054CAEA /* HRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRect.h; sourceTree = "<group>"; };
+		CF8594B71325825C0054CAEA /* HRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRect.m; sourceTree = "<group>"; };
+		CF8594F013259E170054CAEA /* HWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWindow.h; sourceTree = "<group>"; };
+		CF8594F113259E170054CAEA /* HWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWindow.m; sourceTree = "<group>"; };
+		CF8594F61325AE120054CAEA /* HLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLabel.h; sourceTree = "<group>"; };
+		CF8594F71325AE120054CAEA /* HLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLabel.m; sourceTree = "<group>"; };
+		D2AAC07E0554694100DB518D /* libhurray_objc_sdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libhurray_objc_sdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2AAC07E0554694100DB518D /* libhurray_objc_sdk.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* hurray-objc-sdk */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = "hurray-objc-sdk";
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CF85944E1321E8930054CAEA /* HApplicationController.h */,
+				CF85944F1321E8930054CAEA /* HApplicationController.m */,
+				CF8594AD1322EC850054CAEA /* HApplication.h */,
+				CF8594AE1322EC850054CAEA /* HApplication.m */,
+				CF8594B2132581690054CAEA /* HView.h */,
+				CF8594B3132581690054CAEA /* HView.m */,
+				CF8594B61325825C0054CAEA /* HRect.h */,
+				CF8594B71325825C0054CAEA /* HRect.m */,
+				CF8594F013259E170054CAEA /* HWindow.h */,
+				CF8594F113259E170054CAEA /* HWindow.m */,
+				CF8594F61325AE120054CAEA /* HLabel.h */,
+				CF8594F71325AE120054CAEA /* HLabel.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AA747D9E0F9514B9006C5449 /* hurray_objc_sdk_Prefix.pch */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA747D9F0F9514B9006C5449 /* hurray_objc_sdk_Prefix.pch in Headers */,
+				CF8594501321E8930054CAEA /* HApplicationController.h in Headers */,
+				CF8594AF1322EC850054CAEA /* HApplication.h in Headers */,
+				CF8594B4132581690054CAEA /* HView.h in Headers */,
+				CF8594B81325825C0054CAEA /* HRect.h in Headers */,
+				CF8594F213259E170054CAEA /* HWindow.h in Headers */,
+				CF8594F81325AE120054CAEA /* HLabel.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* hurray-objc-sdk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "hurray-objc-sdk" */;
+			buildPhases = (
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "hurray-objc-sdk";
+			productName = "hurray-objc-sdk";
+			productReference = D2AAC07E0554694100DB518D /* libhurray_objc_sdk.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "hurray-objc-sdk" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* hurray-objc-sdk */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* hurray-objc-sdk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF8594511321E8930054CAEA /* HApplicationController.m in Sources */,
+				CF8594B01322EC850054CAEA /* HApplication.m in Sources */,
+				CF8594B5132581690054CAEA /* HView.m in Sources */,
+				CF8594B91325825C0054CAEA /* HRect.m in Sources */,
+				CF8594F313259E170054CAEA /* HWindow.m in Sources */,
+				CF8594F91325AE120054CAEA /* HLabel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				DSTROOT = /tmp/hurray_objc_sdk.dst;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = hurray_objc_sdk_Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = hurray_objc_sdk;
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				DSTROOT = /tmp/hurray_objc_sdk.dst;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = hurray_objc_sdk_Prefix.pch;
+				INSTALL_PATH = /usr/local/lib;
+				PRODUCT_NAME = hurray_objc_sdk;
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "hurray-objc-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "hurray-objc-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}
