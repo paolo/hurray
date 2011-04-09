@@ -20,7 +20,7 @@ $alpha         = [a-zA-Z]
 $alphanum      = [$num $alpha]
 $identif_char  = [$alphanum _]
 $identif_start = [$alpha _]
-$source_char   = [$printable $white $enl]
+$source_char   = [$printable $white $endl]
 
 -- Comments
 @lineComment     = \#.*
