@@ -194,7 +194,11 @@ showPosn (AlexPn _ row col) = show row ++ ":" ++ show col
 tokPosn :: Lexeme -> AlexPosn
 tokPosn (Lexeme p _ _) = p
 
-alexEOF = return  (Lexeme undefined TEOF Nothing)
+alexEOF = return (Lexeme (AlexPn eofPosition eofRowPosition eofColPosition) TEOF Nothing)
+
+eofPosition    = -1
+eofRowPosition = -1
+eofColPosition = -1
 
 lexerError :: String -> Alex a
 lexerError msg = 
