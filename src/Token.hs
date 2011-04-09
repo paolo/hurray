@@ -97,7 +97,7 @@ data Token =   {- Reserved Words (http://www.ruby-doc.org/docs/keywords/1.9/) -}
   | TBeginStr
   | TEndStr
   | TEOF       {- End of File -}
-  deriving (Show, Eq)
+  deriving (Show, Eq, Ord)
 
 {-
   data Token = TLine {-- reserved words --}
