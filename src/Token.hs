@@ -58,6 +58,7 @@ data Token =   {- Reserved Words (http://www.ruby-doc.org/docs/keywords/1.9/) -}
   | TColon2             {- '::' -}
   | TComma              {- ',' -}
   | TSemiColon          {- ';' -}
+  | TDot                {- '.' -}
   | TDot2               {- '..' -}
   | TDot3               {- '...' -}
   | TQuestion           {- '?' -}

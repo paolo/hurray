@@ -20,6 +20,7 @@ $alpha         = [a-zA-Z]
 $alphanum      = [$num $alpha]
 $identif_char  = [$alphanum _]
 $identif_start = [$alpha _]
+$source_char   = [$printable $white $enl]
 
 -- Comments
 @lineComment     = \#.*
@@ -41,14 +42,14 @@ $identif_start = [$alpha _]
 -- String Literals
 -- sq: single quoted
 $sq_escaped_char     = [\'\\]
-$sq_non_escaped_char = [$printable $white $endl] # $sq_escaped_char
+$sq_non_escaped_char = $source_char # $sq_escaped_char
 @sq_escaped_seq      = \\ ($sq_non_escaped_char | $sq_escaped_char)
 @sq_string           = ($sq_non_escaped_char | @sq_escaped_seq)*
 -- dq: double quoted
 $dq_escaped_char     = [\\ntrfvaebs]
-$dq_non_escaped_char = [$printable $white] # [$dq_escaped_char $endl] 
+$dq_non_escaped_char = $source_char # [$dq_escaped_char $endl] 
 @dq_escaped_seq      = \\ [$dq_escaped_char $dq_non_escaped_char \n]
-@dq_string           = (([$printable $white $endl] # [\" \| \\]) | @dq_escaped_seq)*
+@dq_string           = (($source_char # [\" \| \\]) | @dq_escaped_seq)*
 
 -- Keywords
 ruby :-
@@ -121,6 +122,7 @@ ruby :-
 <0> ::      { mkl TColon2    }
 <0> \,      { mkl TComma     }
 <0> \;      { mkl TSemiColon }
+<0> \.      { mkl TDot       }
 <0> \.\.    { mkl TDot2      }
 <0> \.\.\.  { mkl TDot3      }
 <0> \?      { mkl TQuestion  }
