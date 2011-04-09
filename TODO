@@ -1,0 +1,7 @@
+General
+. Leading example will be test/helloworld/helloworld.rb
+
+Tasks
+. Code lexing String literals in Alex
+. Verify that parser can already parse leading example
+. Start integrating parser with new scanner (Alex based)
