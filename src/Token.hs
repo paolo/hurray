@@ -90,7 +90,10 @@ data Token =   {- Reserved Words (http://www.ruby-doc.org/docs/keywords/1.9/) -}
   | TNMatch             {- '!~' Pattern Match -}
   | TMatch              {- '=~' END Operators -}
   | TEOL                {- '\n' -}
-  | TNumber Int 
+  | TLiteralInt         {- Integer literals - BEGIN Numeric Listerals -}
+  | TLiteralStr         {- String literals - BEGIN String Literals -}
+  | TBeginStr
+  | TEndStr
   | TEOF       {- End of File -}
   deriving (Show, Eq)
 

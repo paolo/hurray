@@ -36,9 +36,19 @@ $identif_start = [$alpha _]
 @meth_only_assign  = (@cons_identif | @local_identif) \=
 
 -- Numeric Literals
-@number = $num1 $num*
---@decimal_int_lit = 0 | (@num1 (_? @num)*)
---@
+@decimal_int_lit = 0 | ($num1 (_? $num)*)
+
+-- String Literals
+-- sq: single quoted
+$sq_escaped_char     = [\'\\]
+$sq_non_escaped_char = [$printable $white $endl] # $sq_escaped_char
+@sq_escaped_seq      = \\ ($sq_non_escaped_char | $sq_escaped_char)
+@sq_string           = ($sq_non_escaped_char | @sq_escaped_seq)*
+-- dq: double quoted
+$dq_escaped_char     = [\\ntrfvaebs]
+$dq_non_escaped_char = [$printable $white] # [$dq_escaped_char $endl] 
+@dq_escaped_seq      = \\ [$dq_escaped_char $dq_non_escaped_char \n]
+@dq_string           = (([$printable $white $endl] # [\" \| \\]) | @dq_escaped_seq)*
 
 -- Keywords
 ruby :-
@@ -145,12 +155,19 @@ ruby :-
 <0> \!\~    { mkl TNMatch    }
 <0> \=\~    { mkl TMatch     }
 
--- Literals
---<0> @decimal_int_lit { makeDecimal }
+-- Numeric Literals
+<0> @decimal_int_lit { mkl TLiteralInt }
+
+-- String Literals
+<0>               \'          { (mkl TBeginStr) `andBegin` sq_string_state }
+<sq_string_state> @sq_string  { mkl TLiteralStr                            }
+<sq_string_state> \'          { (mkl TEndStr) `andBegin` initial_state     }
+<0>               \"          { (mkl TBeginStr) `andBegin` dq_string_state }
+<dq_string_state> @dq_string  { mkl TLiteralStr                            }
+<dq_string_state> \"          { (mkl TEndStr) `andBegin` initial_state     }
 
 <0> $white+      { skip }
 <0> $endl        { mkl TEOL }
-<0> @number      { getInteger }
 
 {
 -- States
@@ -177,7 +194,7 @@ showPosn (AlexPn _ row col) = show row ++ ":" ++ show col
 tokPosn :: Lexeme -> AlexPosn
 tokPosn (Lexeme p _ _) = p
 
-alexEOF = return (Lexeme undefined TEOF Nothing)
+alexEOF = return  (Lexeme undefined TEOF Nothing)
 
 lexerError :: String -> Alex a
 lexerError msg = 
@@ -206,16 +223,6 @@ lexerError msg =
 
 
 -- Alex Actions
-getInteger :: AlexInput -> Int -> Alex Lexeme
-getInteger (p, _, input) len = 
-  let
-    str = take len input
-    res = reads str
-  in
-    if length res == 1
-      then return (Lexeme p (TNumber (fst $ head res)) (Just str))
-      else alexError ("Invalid Number: " ++ str)
-
 beginComment :: AlexInput -> Int -> Alex Lexeme
 beginComment inp@(_, c, _) len = 
   if c /= '\n'
