@@ -1,7 +1,8 @@
 module Token where
 
 data Token =   {- Reserved Words (http://www.ruby-doc.org/docs/keywords/1.9/) -} 
-    TBEGIN     {- BEGIN -}
+    TKeyword
+  | TBEGIN     {- BEGIN -}
   | TEND       {- END -}
   | T_ENCODING {- __ENCODING__ -}
   | T_END      {- __END__ -}
