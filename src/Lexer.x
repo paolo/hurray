@@ -161,12 +161,12 @@ ruby :-
 <0> @decimal_int_lit { mkl TLiteralInt }
 
 -- String Literals
-<0>               \'          { (mkl TBeginStr) `andBegin` sq_string_state }
+<0>               \'          { skip `andBegin` sq_string_state }
 <sq_string_state> @sq_string  { mkl TLiteralStr                            }
-<sq_string_state> \'          { (mkl TEndStr) `andBegin` initial_state     }
-<0>               \"          { (mkl TBeginStr) `andBegin` dq_string_state }
+<sq_string_state> \'          { skip `andBegin` initial_state     }
+<0>               \"          { skip `andBegin` dq_string_state }
 <dq_string_state> @dq_string  { mkl TLiteralStr                            }
-<dq_string_state> \"          { (mkl TEndStr) `andBegin` initial_state     }
+<dq_string_state> \"          { skip `andBegin` initial_state     }
 
 <0> $white+      { skip }
 <0> $endl        { mkl TEOL }
