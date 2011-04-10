@@ -22,6 +22,8 @@ $identif_char  = [$alphanum _]
 $identif_start = [$alpha _]
 $source_char   = [$printable $white $endl]
 
+@endlines = ($white* $endl)* $endl
+
 -- Comments
 @lineComment     = \#.*
 @blockCommentBeg = \=begin(\ .*)?
@@ -169,7 +171,7 @@ ruby :-
 <dq_string_state> \"          { skip `andBegin` initial_state     }
 
 <0> $white+      { skip }
-<0> $endl        { mkl TEOL }
+<0> @endlines    { mkl TEOL }
 
 {
 -- States
