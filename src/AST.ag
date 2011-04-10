@@ -1,0 +1,175 @@
+-- Abstract syntax grammar
+
+{
+type Id = String
+}
+
+DATA Root
+ | Root program:Program
+
+DATA Program
+ | Program compstmt:Compstmt
+
+TYPE Compstmt = [ Stmt ]
+
+DATA Stmt 
+ | CallS  Call                                Z
+ | Undef  identif:Id                          Z
+ | Alias  identif_i:Id      identif_d:Id      Z
+ | Begin  Compstmt                            Z
+ | End    Compstmt                            Z
+ | ExprS  expr:Expr                           Z
+
+DATA Z 
+ | If     expr:Expr   Z
+ | While  expr:Expr   Z
+ | Unless expr:Expr   Z
+ | Until  expr:Expr   Z
+ | NilZ
+
+DATA Call 
+ | FunctionC  Function  
+ | CommandC   Command
+
+DATA Function
+ | FunctionF identif:Id   Call_ArgsFs
+
+TYPE Call_ArgsFs = [ Call_ArgsF ]
+          
+DATA Call_ArgsF
+ | Call_ArgsFs Arg
+
+DATA Expr 
+ | OpExpr      ei:Expr  OpE   ed:Expr
+ | ReturnExpr  Call_Args
+ | YieldExpr   Call_Args
+ | NotExpr     expr:Expr
+ | CommandExpr Command
+ | ArgExpr     arg:Arg
+
+DATA OpE 
+ | AndExpr 
+ | OrExpr
+
+TYPE Call_Args = [ Call_Arg ]
+
+DATA Call_Arg  
+ | Numero   entero        :Int
+ | Cadena   cadena        :String
+ | Identif  identif       :Id
+
+DATA Arg 
+ | ArgOpBin    OpBin             ai:Arg             ad:Arg
+ | ArgOpUn     OpUn              Arg
+ | ArgAsig     identif:Id        opAsgn:OpAsgn      Arg
+ | ArgDefined  arg:Arg
+ | ArgPrimary  primary:Primary
+
+{
+type OpBin  = String
+type OpUn   = String
+type OpAsgn = String
+}
+
+DATA Primary
+ | Parentesis   Compstmt                                         Z3
+ | Variable     variable:Variable                                Z3
+ | DobleDosPnts identif:Id                                       Z3
+ | ReturnYield  ReturnYield                                      Z3
+ | DefinedP     Arg                                              Z3
+ | Mostrar      iv:Variable   dv:Variable                        Z3
+ | If_P         expr:Expr     Then     Compstmt  ElsIf   Else    Z3
+ | While_P      expr:Expr     Do       Compstmt                  Z3
+ | For_P        Block_Var     expr:Expr     Do       Compstmt    Z3
+ | Clase        nom_clase:Id  Hereda   Compstmt                  Z3
+ | Definicion   nom_defin:Id  ArgDecls Compstmt                  Z3
+ | FunctionP    Function                                         Z3
+
+DATA Block_Var 
+ | Block_Var_Lhs LhsB
+
+DATA LhsB 
+ | Lhs_id identif:Id
+
+DATA Do 
+ | DoPntoComa
+ | DoDo
+ | DoPntoComaDo          
+
+DATA Then 
+ | ThPntoComa
+ | ThThen
+ | ThPntoComaThen
+
+DATA ElsIf
+ | ElsIf expr:Expr  Then  Compstmt
+ | NilElsIf
+
+DATA Else
+ | Else Compstmt
+ | NilElse
+
+DATA ReturnYield 
+ | ReturnR Call_Args
+ | YieldY  Call_Args
+
+DATA Z3 
+ | Ident identif:Id        Z3
+ | ArgZ3 Arg               Z3
+ | NilZ3
+
+DATA Variable
+ | Identifv  identif:Id
+ | Num       entero :Int
+ | Cad       cadena :String
+
+TYPE Hereda = MAYBE Id
+
+TYPE ArgDecls = [ ArgDecl ]
+
+DATA ArgDecl
+ | ArgDecl identif:Id
+
+DATA Command 
+ | ComP  Primary Call_Args
+ | ComPP Primary Call_Args
+
+DATA Op_Asgn 
+ | MasIgual
+ | MenosIgual
+ | MultIgual
+ | DivIgual
+
+DERIVING *: Show
+
+-- ================================== show AST ==================================
+
+SET AllRoot = * - Root
+ATTR Root    [ || resultado:{IO ()}]
+ATTR AllRoot [ || ast: SELF      ]
+
+SEM Root
+ | Root lhs.resultado = putStrLn (show @program.ast)
+
+{-
+
+class HelloWorldController < HApplicationController
+  
+  def initialize
+  end
+  
+  def start
+    @view = HWindow.new HRect.new(0, 0, 320, 480)
+    
+    label = HLabel.new HRect.new(20, 20, 150, 25)
+    label.text = "Hello World"
+    
+    @view.add_subview label
+    @view.make_visible
+  end
+
+end
+
+HApplication.new(HelloWorldController.new)
+
+-}
