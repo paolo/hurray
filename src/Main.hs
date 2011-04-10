@@ -8,8 +8,8 @@ main =
   do args <- getArgs
      text <- readFile $ head args
      let tokens = runScanner text
-	 print "Scanner output\n"
+     print "Scanner output\n"
      print tokens
-	 print "\nParser output\n"
+     print "\nParser output\n"
      ast <- parser tokens
      ast
