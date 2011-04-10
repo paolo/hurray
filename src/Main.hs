@@ -2,9 +2,14 @@ module Main where
 
 import Lexer
 import Parser
+import System (getArgs)
 
-main = do str <- readFile "../test/helloworld/helloworld.rb"
-          let tokens = runScanner str -- "print (3 + 4)\n"
---          print tokens
-          ast <- parser tokens
-          ast
+main = 
+  do args <- getArgs
+     text <- readFile $ head args
+     let tokens = runScanner text
+	 print "Scanner output\n"
+     print tokens
+	 print "\nParser output\n"
+     ast <- parser tokens
+     ast
