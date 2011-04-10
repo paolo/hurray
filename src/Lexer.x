@@ -183,8 +183,7 @@ data Lexeme = Lexeme AlexPosn Token (Maybe String)
 
 instance Show Lexeme where
   show (Lexeme _ TEOF _)  = "  Lexeme TEOF"
-  show (Lexeme p tok mst) = "  Lexeme Tok: " ++ show tok ++ " at " ++ showPosn p
- ++ showmst mst
+  show (Lexeme p tok mst) = "  Lexeme Tok: " ++ show tok ++ " at " ++ showPosn p ++ showmst mst
     where
       showmst Nothing  = ""
       showmst (Just s) = " string: " ++ show s
