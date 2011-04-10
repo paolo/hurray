@@ -88,7 +88,7 @@ pFactorExpr
            <|> sem_Expr_NotExpr      <$  pPalRes "not"
                                      <*> pExpr
 
-           <|> sem_Expr_CommandExpr  <$> pCommand
+           <|> sem_Expr_CommandExpr  <$> pFunction
 
            <|> sem_Expr_ArgExpr      <$> pArg
 

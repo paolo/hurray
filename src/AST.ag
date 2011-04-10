@@ -44,7 +44,7 @@ DATA Expr
  | ReturnExpr  Call_Args
  | YieldExpr   Call_Args
  | NotExpr     expr:Expr
- | CommandExpr Command
+ | CommandExpr Function
  | ArgExpr     arg:Arg
 
 DATA OpE 
