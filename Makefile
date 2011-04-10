@@ -23,3 +23,9 @@ build:
 	cd $(SRC_DIR); ghc -fglasgow-exts --make -o hurray Main.hs
 	mkdir $(DIST_DIR)
 	mv $(SRC_DIR)/hurray $(OUTPUT)
+
+run-ruby:
+	ruby -Ilib/hurray-ruby-sdk -I$(DIR) $(RB)
+
+run-sim:
+	jruby -Ilib/hurray-ruby-sdk -I$(DIR) -Itools/hurray-jruby-sim tools/hurray-jruby-sim/simulator.rb $(CL)

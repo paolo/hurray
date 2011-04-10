@@ -5,13 +5,15 @@ Requirements (so far):
 Ruby  >= 1.8.7
 JRuby >= 1.6 (to execute the simulator)
 
-to run the helloworl test application:
+to run the helloworld test application:
 go to the project's root (hurray folder)
-ruby -Ilib/hurray-ruby-sdk helloworld.rb
+make run-ruby DIR=<file-parent-folder> RB=<file>
 
 to run the application, and view the results with the simulator:
 go to the project's root.
-jruby -Ilib/hurray-ruby-sdk -Itest/helloworld -Itools/hurray-jruby-sin simulator.rb
+make run-sim DIR=<file-parent-folder> CL=<MainClassName>
 
-So far the hello world app is still not finished, using the simulator you'll only see an empty
-window 640x480 (IPhone 3G resolution).
+Example:
+to run the helloworld test application located at test/helloworld/helloworld.rb
+make run-ruby DIR=test/helloworld RB=test/helloworld/helloworld.rb
+mkae run-sim DIR=test/helloworld CL=HelloWorldController
