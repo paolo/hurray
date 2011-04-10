@@ -21,4 +21,5 @@ clean:
 
 build:
 	cd $(SRC_DIR); ghc -fglasgow-exts --make -o hurray Main.hs
+	mkdir $(DIST_DIR)
 	mv $(SRC_DIR)/hurray $(OUTPUT)
