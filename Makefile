@@ -12,6 +12,9 @@ all:
 alex:
 	alex $(LEXER_X)
 
+uuag:
+	cd $(SRC_DIR); uuagc -a AST
+
 delete-files:
 	rm $(SRC_DIR)/*.o $(SRC_DIR)/*.hi
 
@@ -20,9 +23,7 @@ clean:
 	make delete-files
 
 build:
-	cd $(SRC_DIR); ghc -fglasgow-exts --make -o hurray Main.hs
-	mkdir $(DIST_DIR)
-	mv $(SRC_DIR)/hurray $(OUTPUT)
+	cd $(SRC_DIR); ghc -fglasgow-exts --make -outputdir $(DIST_DIR) -o hurray Main.hs
 
 run-ruby:
 	ruby -Ilib/hurray-ruby-sdk -I$(DIR) $(RB)
