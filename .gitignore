@@ -8,3 +8,5 @@ build/
 *.mode1v3
 *.mode2v3
 dist/
+src/Lexer.hs
+src/AST.hs
