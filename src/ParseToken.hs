@@ -40,8 +40,15 @@ pEntero :: Parser Lexeme Int
 pEntero          = (\x -> (read x) :: Int) <$> tSym TLiteralInt  ""
 
 pPalRes :: String -> Parser Lexeme String
-pPalRes       pc =                             tSym TKeyword     pc
+pPalRes pc       = tSym TKeyword pc
 
+pSeparador :: String -> Parser Lexeme String
+pSeparador pun   = tSym TPunctuator pun
+
+pOperador :: String -> Parser Lexeme String
+pOperador  op    = tSym TOperator   op
+
+{-
 pSeparador sep = tSym cat sep
   where cat = maybe TLBrack id (sep `lookup` separador)
 
@@ -92,3 +99,4 @@ operador = [ ("+"  , TPlus     )
            , ("!~" , TNMatch   )
            , ("=~" , TMatch    )
            ]
+-}

@@ -22,7 +22,7 @@ $identif_char  = [$alphanum _]
 $identif_start = [$alpha _]
 $source_char   = [$printable $white $endl]
 
-@endlines = ($white* $endl)* $endl
+@endlines = ($white* $endl*)* $endl
 
 -- Comments
 @lineComment     = \#.*
@@ -115,49 +115,49 @@ ruby :-
 <0> @meth_only_assign   { mkl TMethodIdent    }
 
 -- Punctuators
-<0> \[      { mkl TLBrack    }
-<0> \]      { mkl TRBrack    }
-<0> \(      { mkl TLParen    }
-<0> \)      { mkl TRParen    }
-<0> \{      { mkl TLBrace    }
-<0> \}      { mkl TRBrace    }
-<0> ::      { mkl TColon2    }
-<0> \,      { mkl TComma     }
-<0> \;      { mkl TSemiColon }
-<0> \.      { mkl TDot       }
-<0> \.\.    { mkl TDot2      }
-<0> \.\.\.  { mkl TDot3      }
-<0> \?      { mkl TQuestion  }
-<0> :       { mkl TColon     }
-<0> \=\>    { mkl TAssoc     }
+<0> \[      { mkl TPunctuator }
+<0> \]      { mkl TPunctuator }
+<0> \(      { mkl TPunctuator }
+<0> \)      { mkl TPunctuator }
+<0> \{      { mkl TPunctuator }
+<0> \}      { mkl TPunctuator }
+<0> ::      { mkl TPunctuator }
+<0> \,      { mkl TPunctuator }
+<0> \;      { mkl TPunctuator }
+<0> \.      { mkl TPunctuator }
+<0> \.\.    { mkl TPunctuator }
+<0> \.\.\.  { mkl TPunctuator }
+<0> \?      { mkl TPunctuator }
+<0> :       { mkl TPunctuator }
+<0> \=\>    { mkl TPunctuator }
 
 -- Operators
-<0> \+      { mkl TPlus      }
-<0> \-      { mkl TMinus     }
-<0> \*      { mkl TTimes     }
-<0> \/      { mkl TDiv       }
-<0> \%      { mkl TMod       }
-<0> \*\*    { mkl TPow       }
-<0> \=\=    { mkl TEQ        }
-<0> \!\=    { mkl TNEQ       }
-<0> \>      { mkl TGT        }
-<0> \>\=    { mkl TGEQ       }
-<0> \<      { mkl TLT        }
-<0> \<\=    { mkl TLEQ       }
-<0> \<\=\>  { mkl TCMP       }
-<0> \=\=\=  { mkl TEQQ       }
-<0> \=      { mkl TAsignment }
-<0> \^      { mkl TCaret     }
-<0> \&      { mkl TAndBit    }
-<0> \|      { mkl TOrBit     }
-<0> \<\<    { mkl TLShift    }
-<0> \>\>    { mkl TRShift    }
-<0> \&\&    { mkl TAndOp     }
-<0> \|\|    { mkl TOrOp      }
-<0> \!      { mkl TNotRaw    }
-<0> \~      { mkl TNyoro     }
-<0> \!\~    { mkl TNMatch    }
-<0> \=\~    { mkl TMatch     }
+<0> \+      { mkl TOperator }
+<0> \-      { mkl TOperator }
+<0> \*      { mkl TOperator }
+<0> \/      { mkl TOperator }
+<0> \%      { mkl TOperator }
+<0> \*\*    { mkl TOperator }
+<0> \=\=    { mkl TOperator }
+<0> \!\=    { mkl TOperator }
+<0> \>      { mkl TOperator }
+<0> \>\=    { mkl TOperator }
+<0> \<      { mkl TOperator }
+<0> \<\=    { mkl TOperator }
+<0> \<\=\>  { mkl TOperator }
+<0> \=\=\=  { mkl TOperator }
+<0> \=      { mkl TOperator }
+<0> \^      { mkl TOperator }
+<0> \&      { mkl TOperator }
+<0> \|      { mkl TOperator }
+<0> \<\<    { mkl TOperator }
+<0> \>\>    { mkl TOperator }
+<0> \&\&    { mkl TOperator }
+<0> \|\|    { mkl TOperator }
+<0> \!      { mkl TOperator }
+<0> \~      { mkl TOperator }
+<0> \!\~    { mkl TOperator }
+<0> \=\~    { mkl TOperator }
 
 -- Numeric Literals
 <0> @decimal_int_lit { mkl TLiteralInt }

@@ -13,26 +13,26 @@ DATA Program
 TYPE Compstmt = [ Stmt ]
 
 DATA Stmt 
- | CallS  Call                                Z
- | Undef  identif:Id                          Z
- | Alias  identif_i:Id      identif_d:Id      Z
- | Begin  Compstmt                            Z
- | End    Compstmt                            Z
- | ExprS  expr:Expr                           Z
+ | CallS  Call                                StmtWithModif
+ | Undef  identif:Id                          StmtWithModif
+ | Alias  identif_i:Id      identif_d:Id      StmtWithModif
+ | Begin  Compstmt                            StmtWithModif
+ | End    Compstmt                            StmtWithModif
+ | ExprS  expr:Expr                           StmtWithModif
 
-DATA Z 
- | If     expr:Expr   Z
- | While  expr:Expr   Z
- | Unless expr:Expr   Z
- | Until  expr:Expr   Z
- | NilZ
+DATA StmtWithModif
+ | If     expr:Expr   StmtWithModif
+ | While  expr:Expr   StmtWithModif
+ | Unless expr:Expr   StmtWithModif
+ | Until  expr:Expr   StmtWithModif
+ | NilStmt
 
-DATA Call 
- | FunctionC  Function  
- | CommandC   Command
+DATA Call
+ | Function  fun:Function  
+ | Command   cmd:Command
 
 DATA Function
- | FunctionF identif:Id   Call_ArgsFs
+ | Function identif:Id   Call_ArgsFs
 
 TYPE Call_ArgsFs = [ Call_ArgsF ]
           
@@ -40,11 +40,11 @@ DATA Call_ArgsF
  | Call_ArgsFs Arg
 
 DATA Expr 
- | OpExpr      ei:Expr  OpE   ed:Expr
+ | OpExpr      left:Expr  OpE   right:Expr
  | ReturnExpr  Call_Args
  | YieldExpr   Call_Args
  | NotExpr     expr:Expr
- | CommandExpr Function
+ | CommandExpr fun:Function
  | ArgExpr     arg:Arg
 
 DATA OpE 
@@ -54,12 +54,12 @@ DATA OpE
 TYPE Call_Args = [ Call_Arg ]
 
 DATA Call_Arg  
- | Numero   entero        :Int
- | Cadena   cadena        :String
- | Identif  identif       :Id
+ | Integer   integer:Int
+ | String    string :String
+ | Identif  identif:Id
 
 DATA Arg 
- | ArgOpBin    OpBin             ai:Arg             ad:Arg
+ | ArgOpBin    OpBin             al:Arg             ar:Arg
  | ArgOpUn     OpUn              Arg
  | ArgAsig     identif:Id        opAsgn:OpAsgn      Arg
  | ArgDefined  arg:Arg
@@ -72,18 +72,23 @@ type OpAsgn = String
 }
 
 DATA Primary
- | Parentesis   Compstmt                                         Z3
+ | Paren        Compstmt                                         Z3
  | Variable     variable:Variable                                Z3
- | DobleDosPnts identif:Id                                       Z3
+ | ColonColon   identif:Id                                       Z3
  | ReturnYield  ReturnYield                                      Z3
  | DefinedP     Arg                                              Z3
- | Mostrar      iv:Variable   dv:Variable                        Z3
+ | Show         lv:Variable   rv:Variable                        Z3
  | If_P         expr:Expr     Then     Compstmt  ElsIf   Else    Z3
  | While_P      expr:Expr     Do       Compstmt                  Z3
  | For_P        Block_Var     expr:Expr     Do       Compstmt    Z3
- | Clase        nom_clase:Id  Hereda   Compstmt                  Z3
- | Definicion   nom_defin:Id  ArgDecls Compstmt                  Z3
+ | Class        classname:Id  Inherits Compstmt                  Z3
+ | Definition   name:Id       ArgDecls Compstmt                  Z3
  | FunctionP    Function                                         Z3
+
+DATA Z3 
+ | Ident identif:Id        Z3
+ | ArgZ3 Arg               Z3
+ | NilZ3
 
 DATA Block_Var 
  | Block_Var_Lhs LhsB
@@ -92,14 +97,14 @@ DATA LhsB
  | Lhs_id identif:Id
 
 DATA Do 
- | DoPntoComa
+ | DoSemiColon
  | DoDo
- | DoPntoComaDo          
+ | DoSemiColonDo          
 
 DATA Then 
- | ThPntoComa
+ | ThSemiColon
  | ThThen
- | ThPntoComaThen
+ | ThSemiColonThen
 
 DATA ElsIf
  | ElsIf expr:Expr  Then  Compstmt
@@ -113,17 +118,12 @@ DATA ReturnYield
  | ReturnR Call_Args
  | YieldY  Call_Args
 
-DATA Z3 
- | Ident identif:Id        Z3
- | ArgZ3 Arg               Z3
- | NilZ3
-
 DATA Variable
  | Identifv  identif:Id
- | Num       entero :Int
- | Cad       cadena :String
+ | Int       int :Int
+ | Str       str :String
 
-TYPE Hereda = MAYBE Id
+TYPE Inherits = MAYBE Id
 
 TYPE ArgDecls = [ ArgDecl ]
 
@@ -135,18 +135,18 @@ DATA Command
  | ComPP Primary Call_Args
 
 DATA Op_Asgn 
- | MasIgual
- | MenosIgual
- | MultIgual
- | DivIgual
+ | PlusEq
+ | MinuxEq
+ | TimesEq
+ | DivEq
 
 DERIVING *: Show
 
 -- ================================== show AST ==================================
 
 SET AllRoot = * - Root
-ATTR Root    [ || resultado:{IO ()}]
+ATTR Root    [ || res:{IO ()}]
 ATTR AllRoot [ || ast: SELF      ]
 
 SEM Root
- | Root lhs.resultado = putStrLn (show @program.ast)
+ | Root lhs.res = putStrLn (show @program.ast)

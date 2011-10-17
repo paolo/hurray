@@ -1,0 +1,13 @@
+-- Grammar
+{
+type ID = String
+}
+
+DATA Root
+  | Root program:Program
+
+DATA Program
+  | Program compStmt:CompStmt
+
+DATA CompStmt
+  | CompStmt

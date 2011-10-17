@@ -17,53 +17,53 @@ pCompstmt1 = sem_Compstmt_Cons <$> pStmt
 pCompstmt0 = pFoldr (sem_Compstmt_Cons,sem_Compstmt_Nil) (pStmt <* pEOL)
 
 pStmt     =    sem_Stmt_CallS     <$> pCall
-                                  <*> pZ
+                                  <*> pStmtWithModif
                                       
            <|> sem_Stmt_Undef     <$  pPalRes "undef"
                                   <*> pID
-                                  <*> pZ
+                                  <*> pStmtWithModif
                                   
            <|> sem_Stmt_Alias     <$  pPalRes "alias"
                                   <*> pID
                                   <*> pID
-                                  <*> pZ
+                                  <*> pStmtWithModif
                                   
            <|> sem_Stmt_Begin     <$  pPalRes "BEGIN"
                                   <*  pSeparador "{"
                                   <*> pCompstmt0
                                   <*  pSeparador "}"
-                                  <*> pZ
+                                  <*> pStmtWithModif
                                   
            <|> sem_Stmt_End       <$  pPalRes "END"
                                   <*  pSeparador "{"
                                   <*> pCompstmt0
                                   <*  pSeparador "}"
-                                  <*> pZ
+                                  <*> pStmtWithModif
                                   
           <|> sem_Stmt_ExprS      <$> pExpr
-                                  <*> pZ
+                                  <*> pStmtWithModif
                                   
-pZ        =     sem_Z_If          <$  pPalRes "if" 
-                                  <*> pExpr
-                                  <*> pZ
+pStmtWithModif = sem_StmtWithModif_If      <$  pPalRes "if" 
+                                           <*> pExpr
+                                           <*> pStmtWithModif
                                   
-            <|> sem_Z_While       <$  pPalRes "while"
-                                  <*> pExpr 
-                                  <*> pZ
+              <|> sem_StmtWithModif_While  <$  pPalRes "while"
+                                           <*> pExpr 
+                                           <*> pStmtWithModif
             
-            <|> sem_Z_Unless      <$  pPalRes "unless"
-                                  <*> pExpr
-                                  <*> pZ
+              <|> sem_StmtWithModif_Unless <$  pPalRes "unless"
+                                           <*> pExpr
+                                           <*> pStmtWithModif
                                   
-            <|> sem_Z_Until       <$  pPalRes "until"
-                                  <*> pExpr
-                                  <*> pZ
+              <|> sem_StmtWithModif_Until  <$  pPalRes "until"
+                                           <*> pExpr
+                                           <*> pStmtWithModif
                                   
-            <|> pSucceed sem_Z_NilZ
+              <|> pSucceed sem_StmtWithModif_NilStmt
 
-pCall =     sem_Call_FunctionC <$> pFunction
+pCall =     sem_Call_Function <$> pFunction
 
-pFunction = sem_Function_FunctionF <$> pID <*> pCallArguments
+pFunction = sem_Function_Function <$> pID <*> pCallArguments
 
 pCallArguments =   pSeparador "(" *> pCall_ArgsFs <*  pSeparador ")"
                <|> pCall_ArgsFs
@@ -94,11 +94,11 @@ pFactorExpr
 
 pCall_Args = pFoldrSep_ng (sem_Call_Args_Cons,sem_Call_Args_Nil) (pSeparador ",") pCall_Arg
 
-pCall_Arg =     sem_Call_Arg_Numero  <$> pEntero
-            <|> sem_Call_Arg_Cadena  <$> pCadena
-            <|> sem_Call_Arg_Identif <$> pID
+pCall_Arg =     sem_Call_Arg_Integer  <$> pEntero
+            <|> sem_Call_Arg_String   <$> pCadena
+            <|> sem_Call_Arg_Identif  <$> pID
                                   
-pPrimary =     sem_Primary_Parentesis   <$  pSeparador "("
+pPrimary =     sem_Primary_Paren        <$  pSeparador "("
                                         <*> pCompstmt0
                                         <*> pZ3
                                         <*  pSeparador ")"
@@ -106,7 +106,7 @@ pPrimary =     sem_Primary_Parentesis   <$  pSeparador "("
            <|> sem_Primary_Variable     <$> pVariable
                                         <*> pZ3
 
-           <|> sem_Primary_DobleDosPnts <$  pOperador "::"
+           <|> sem_Primary_ColonColon   <$  pOperador "::"
                                         <*> pID
                                         <*> pZ3
 
@@ -135,7 +135,7 @@ pPrimary =     sem_Primary_Parentesis   <$  pSeparador "("
                                        <*  pPalRes "end"
                                        <*> pZ3
 
-           <|> sem_Primary_Mostrar     <$> pVariable
+           <|> sem_Primary_Show        <$> pVariable
                                        <*> pVariable
                                        <*> pZ3
  
@@ -147,14 +147,14 @@ pPrimary =     sem_Primary_Parentesis   <$  pSeparador "("
                                        <*  pPalRes "end"
                                        <*> pZ3
 
-           <|> sem_Primary_Clase       <$  pPalRes "class"
+           <|> sem_Primary_Class       <$  pPalRes "class"
                                        <*> pCID
                                        <*> pHereda
                                        <*> pCompstmt0
                                        <*> pZ3
                                        <*  pPalRes "end"
 
-           <|> sem_Primary_Definicion  <$  pPalRes "def"
+           <|> sem_Primary_Definition  <$  pPalRes "def"
                                        <*> pID
                                        <*> pDefArgs
                                        <*> pCompstmt0
@@ -168,16 +168,16 @@ pBlock_Var = sem_Block_Var_Block_Var_Lhs <$> pLhsB
 
 pLhsB      = sem_LhsB_Lhs_id <$> pID
 
-pDo =     sem_Do_DoPntoComa   <$ pEOL
-      <|> sem_Do_DoDo         <$ pPalRes "do"
-      <|> sem_Do_DoPntoComaDo <$ pEOL
-                              <* pPalRes "do"
+pDo =     sem_Do_DoSemiColon   <$ pEOL
+      <|> sem_Do_DoDo          <$ pPalRes "do"
+      <|> sem_Do_DoSemiColonDo <$ pEOL
+                               <* pPalRes "do"
 
-pThen =     sem_Then_ThPntoComa     <$ pEOL
+pThen =     sem_Then_ThSemiColon     <$ pEOL
 
-        <|> sem_Then_ThThen         <$ pPalRes "then"
+        <|> sem_Then_ThThen          <$ pPalRes "then"
         
-        <|> sem_Then_ThPntoComaThen <$ pEOL
+        <|> sem_Then_ThSemiColonThen <$ pEOL
                                     <* pPalRes "then"
 
 pElsIf =     sem_ElsIf_ElsIf    <$ pPalRes "elsif"
@@ -195,8 +195,8 @@ pReturnYield =     sem_ReturnYield_ReturnR <$ pPalRes "return" <*> pCall_Args
                <|> sem_ReturnYield_YieldY  <$ pPalRes "yield"  <*> pCall_Args
 
 pVariable =     sem_Variable_Identifv <$> pID
-            <|> sem_Variable_Num      <$> pEntero
-            <|> sem_Variable_Cad      <$> pCadena
+            <|> sem_Variable_Int      <$> pEntero
+            <|> sem_Variable_Str      <$> pCadena
 
 pArg = foldr pChainr pFactorArg [ pOpBooleanosO, pOpBooleanosY, pOpRelacionales
                                 , pOpSuma, pOpMult, pOpCall
@@ -237,10 +237,10 @@ pFactorArg
 pOp_Asgn = pOpGen' id ["=", "+=", "-=", "*=", "/="]
 pOp_Un   = pOpGen' id ["+", "-", "~", "!"]
 
-pHereda =   sem_Hereda_Nothing <$ pEOL
-        <|> sem_Hereda_Just    <$ pOperador "<" <*> pCID <* pEOL
+pHereda =   sem_Inherits_Nothing <$ pEOL
+        <|> sem_Inherits_Just    <$ pOperador "<" <*> pCID <* pEOL
 
-pZ3 =     sem_Z3_Ident <$ pOperador "::" <*> pID <*> pZ3
+pZ3 =     sem_Z3_Ident <$ pSeparador "::" <*> pID <*> pZ3
       <|> sem_Z3_ArgZ3 <$ pSeparador "["
                        <*> pArg 
                        <*  pSeparador "]"

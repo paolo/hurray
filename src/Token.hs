@@ -2,12 +2,19 @@ module Token where
 
 data Token =   {- Reserved Words (http://www.ruby-doc.org/docs/keywords/1.9/) -} 
     TKeyword
-  | TLocalIdent     {- local identifier -}
-  | TGlobalIdent    {- global identifier -}
-  | TClassIdent     {- class identifier -}
-  | TInstanceIdent  {- instance identifier -}
-  | TConstantIdent  {- constant identifier -}
-  | TMethodIdent    {- method identifier -}
+  | TLocalIdent     {- local identifier       -}
+  | TGlobalIdent    {- global identifier      -}
+  | TClassIdent     {- class identifier       -}
+  | TInstanceIdent  {- instance identifier    -}
+  | TConstantIdent  {- constant identifier    -}
+  | TMethodIdent    {- method identifier      -}
+  | TPunctuator     {- Punctuators            -}
+  | TOperator       {- Operators              -}
+  | TEOL            {- '\n'                   -}
+  | TLiteralInt     {- Integer literals       -}
+  | TLiteralStr     {- String literals        -}
+  | TEOF            {- End of File            -}
+
   | TLBrack             {- '[' BEGIN Punctuators -}
   | TRBrack             {- ']' -}
   | TLParen             {- '(' -}
@@ -49,8 +56,4 @@ data Token =   {- Reserved Words (http://www.ruby-doc.org/docs/keywords/1.9/) -}
   | TNyoro              {- '~' -}
   | TNMatch             {- '!~' Pattern Match -}
   | TMatch              {- '=~' END Operators -}
-  | TEOL                {- '\n' -}
-  | TLiteralInt         {- Integer literals - BEGIN Numeric Listerals -}
-  | TLiteralStr         {- String literals - BEGIN String Literals -}
-  | TEOF       {- End of File -}
   deriving (Show, Eq, Ord)
