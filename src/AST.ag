@@ -33,6 +33,7 @@ DATA Call
 
 DATA Function
  | Function identif:Id   Call_ArgsFs
+ | ComposedFun 
 
 TYPE Call_ArgsFs = [ Call_ArgsF ]
           
