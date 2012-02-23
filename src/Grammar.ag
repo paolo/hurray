@@ -1,6 +1,6 @@
 -- Grammar
 {
-type ID = String
+type Id = String
 }
 
 DATA Root
@@ -9,5 +9,35 @@ DATA Root
 DATA Program
   | Program compStmt:CompStmt
 
-DATA CompStmt
-  | CompStmt
+TYPE CompStmt = [ Stmt ]
+
+DATA Stmt
+  | Alias  AliasStmt   StmtWithModifier
+  | Undef  UndefParams StmtWithModifier
+  | KBegin CompStmt    StmtWithModifier
+  | KEnd   CompStmt    StmtWithModifier
+  | Expr   Expr        StmtWithModifier
+  | Assign Mlhs        Mrhs             -- TODO
+
+DATA StmtWithModifier
+  | If      Expr  StmtWithModifier
+  | Unless  Expr  StmtWithModifier
+  | While   Expr  StmtWithModifier
+  | Until   Expr  StmtWithModifier
+  | Rescue  Expr  StmtWithModifier
+  | Nil
+
+TYPE UndefParams = [ UndefParam ]
+
+DATA UndefParam
+  | Identifier  param:Identifier
+  | Constant    param:Constant
+  | Function    param:Function
+  | Symbol      param:Symbol
+  | KwAsMethod  param:KwAsMethod
+  | OpAsMethod  param:OpAsMethod
+
+DATA AliasStmt
+  | Global      left:Global    right:Global
+  | UndefParam  left:UdefParam right:UndefParam
+
