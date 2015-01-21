@@ -10,14 +10,8 @@ class HelloWorldController < HApplicationController
   end
   
   def start
-    @view = HWindow.new HRect.new(0, 0, 320, 480)
     
-    label = HLabel.new HRect.new(20, 20, 150, 25)
-    label.text = "Hello World"
-    
-    @view.add_subview label
-    @view.make_visible
   end
 end
 
-HApplication.new(HelloWorldController.new)
+HelloWorldController.new
